@@ -11,6 +11,29 @@ type Assets interface {
 	DeleteAssets(ctx iris.Context)
 }
 
+type assetCreator func(ctx iris.Context) Assets
+
+type Factory struct {
+	creators map[string]assetCreator
+}
+
+func NewAssetFactory() *Factory {
+	return &Factory{
+		creators: map[string]assetCreator{
+			"host":     NewHost,
+			"business": NewBusiness,
+		},
+	}
+}
+
+func CreateAssets(ctx iris.Context) {
+	factory := NewAssetFactory()
+	var assetType = ctx.Params().Get("type")
+	creator := factory.creators[assetType]
+	assets := creator(ctx)
+	assets.AddAssets(ctx)
+}
+
 type Host struct {
 	IpAddress  string `json:"ipAddress"`
 	IpType     string `json:"ipType"`
@@ -59,28 +82,4 @@ func (business *Business) QueryByPage(ctx iris.Context) {
 
 func (business *Business) DeleteAssets(ctx iris.Context) {
 	fmt.Println(ctx.Host())
-}
-
-type assetCreator func(ctx iris.Context) Assets
-
-type Factory struct {
-	creators map[string]assetCreator
-}
-
-func NewAssetFactory() *Factory {
-	return &Factory{
-		creators: map[string]assetCreator{
-			"host":     NewHost,
-			"business": NewBusiness,
-		},
-	}
-}
-
-func CreateAssets(ctx iris.Context) {
-	factory := NewAssetFactory()
-	var assetType = ctx.Params().Get("type")
-	fmt.Printf("assets type %s", assetType)
-	creator := factory.creators[assetType]
-	assets := creator(ctx)
-	assets.AddAssets(ctx)
 }

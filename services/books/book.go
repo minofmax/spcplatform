@@ -13,7 +13,6 @@ func List(ctx iris.Context) {
 		{"Go Design Patterns"},
 		{"Black Hat Go"},
 	}
-
 	ctx.JSON(books)
 	// TIP: negotiate the response between server's prioritizes
 	// and client's requirements, instead of ctx.JSON:

@@ -2,13 +2,16 @@ package main
 
 import (
 	"github.com/kataras/iris/v12"
+	"spcplatform/middlewares"
 	"spcplatform/services/assets"
 	"spcplatform/services/books"
 )
 
 func registerApi(app *iris.Application) {
 	apiParty := app.Party("/api")
-	apiParty.Use(iris.Compression)
+	apiParty.Use(iris.Compression,
+		middlewares.CustomAuth(),
+		middlewares.CustomRecover)
 	registerBooksApi(apiParty)
 	registerAssetsApi(apiParty)
 }
