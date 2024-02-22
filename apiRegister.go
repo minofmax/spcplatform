@@ -3,17 +3,25 @@ package main
 import (
 	"github.com/kataras/iris/v12"
 	"spcplatform/middlewares"
-	"spcplatform/services/assets"
 	"spcplatform/services/books"
+	"spcplatform/views"
 )
 
 func registerApi(app *iris.Application) {
 	apiParty := app.Party("/api")
 	apiParty.Use(iris.Compression,
-		middlewares.CustomAuth(),
+		//middlewares.CustomAuth(),
 		middlewares.CustomRecover)
 	registerBooksApi(apiParty)
 	registerAssetsApi(apiParty)
+	registerGroupsApi(apiParty)
+}
+
+func registerGroupsApi(partyAPI iris.Party) {
+	partyAPI = partyAPI.Party("/groups/")
+	{
+		partyAPI.Get("/query", views.QueryGroupPermissionsInPage)
+	}
 }
 
 func registerBooksApi(partyAPI iris.Party) {
@@ -27,6 +35,6 @@ func registerBooksApi(partyAPI iris.Party) {
 func registerAssetsApi(partyAPI iris.Party) {
 	partyAPI = partyAPI.Party("/assets/")
 	{
-		partyAPI.Get("/{type:path}", assets.CreateAssets)
+		partyAPI.Get("/{type:path}", views.CreateAssets)
 	}
 }

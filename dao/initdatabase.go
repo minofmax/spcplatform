@@ -10,19 +10,19 @@ import (
 )
 
 var DBClient *gorm.DB
-var dbLogFile, _ = os.Create("../logs/db.log")
+var dbLogFile, _ = os.Create("logs/db.log")
 
 func InitDataBase() {
 	newLogger := logger.New(log.New(dbLogFile, "\r\n", log.LstdFlags), logger.Config{
 		SlowThreshold:             2 * time.Second,
-		LogLevel:                  logger.Silent,
+		LogLevel:                  logger.Info,
 		IgnoreRecordNotFoundError: true,
 		Colorful:                  false,
 	})
 
 	var err error
 	DBClient, err = gorm.Open(mysql.New(mysql.Config{
-		DSN:                       "user:pass@tcp(127.0.0.1:3306)/tools_platform?charset=utf8mb4&parseTime=True&loc=Local",
+		DSN:                       "root:123@tcp(127.0.0.1:3306)/tools_platform?charset=utf8mb4&parseTime=True&loc=Local",
 		DefaultStringSize:         256,
 		DontSupportRenameIndex:    true,
 		DontSupportRenameColumn:   true,

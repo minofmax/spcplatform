@@ -14,24 +14,16 @@ type Assets interface {
 type assetCreator func(ctx iris.Context) Assets
 
 type Factory struct {
-	creators map[string]assetCreator
+	Creators map[string]assetCreator
 }
 
 func NewAssetFactory() *Factory {
 	return &Factory{
-		creators: map[string]assetCreator{
+		Creators: map[string]assetCreator{
 			"host":     NewHost,
 			"business": NewBusiness,
 		},
 	}
-}
-
-func CreateAssets(ctx iris.Context) {
-	factory := NewAssetFactory()
-	var assetType = ctx.Params().Get("type")
-	creator := factory.creators[assetType]
-	assets := creator(ctx)
-	assets.AddAssets(ctx)
 }
 
 type Host struct {
@@ -62,9 +54,9 @@ func (host *Host) DeleteAssets(ctx iris.Context) {
 }
 
 type Business struct {
-	Name   string `json:"name"`
-	Parent uint8  `json:"parent"`
-	Child  uint8  `json:"child"`
+	Name   string    `json:"name"`
+	Parent uint8     `json:"parent"`
+	Child  *Business `json:"child"`
 }
 
 func NewBusiness(ctx iris.Context) Assets {
