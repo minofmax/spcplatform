@@ -6,14 +6,8 @@ import (
 )
 
 func QueryGroupPermissions(ctx iris.Context) {
-	pageSize, err := ctx.Params().GetInt("pageSize")
-	if err != nil {
-		pageSize = 10
-	}
-	pageNum, err := ctx.Params().GetInt("pageNum")
-	if err != nil {
-		pageNum = 1
-	}
+	pageSize := ctx.URLParamIntDefault("pageSize", 10)
+	pageNum := ctx.URLParamIntDefault("pageNum", 1)
 	offset := (pageNum - 1) * pageSize
 	page := dao.QueryGroupPermissionDataInPage(pageSize, offset)
 	ctx.JSON(page)
