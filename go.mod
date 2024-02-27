@@ -4,6 +4,7 @@ go 1.21.6
 
 require (
 	github.com/kataras/iris/v12 v12.2.10
+	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 	gorm.io/driver/mysql v1.5.2
 	gorm.io/gorm v1.25.6
 )
