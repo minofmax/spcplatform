@@ -18,3 +18,16 @@ func CustomAuth() iris.Handler {
 		ctx.Next()
 	}
 }
+
+func ApiKeyAuth() iris.Handler {
+	return func(ctx iris.Context) {
+		//fmt.Println()
+		authorization := ctx.GetHeader("Authorization")
+		if authorization != "123" {
+			ctx.StatusCode(401)
+			ctx.JSON(models.ResponseBody{Status: models.NotAuthorization, Msg: models.NotAuthorizationMsg})
+			return
+		}
+		ctx.Next()
+	}
+}

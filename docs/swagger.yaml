@@ -1,0 +1,51 @@
+basePath: /
+definitions:
+  models.ResponseBody:
+    properties:
+      data: {}
+      msg:
+        type: string
+      status:
+        type: integer
+    type: object
+info:
+  contact:
+    email: caiwei
+    name: caiwei
+  description: SPC Platform Swagger API
+  title: SPC Platform Swagger API
+  version: "1.0"
+paths:
+  /api/groups/query:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页页数
+        in: query
+        name: pageNum
+        type: integer
+      - description: 分页大小
+        in: query
+        name: pageSize
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功
+        "400":
+          description: 返回body
+          schema:
+            $ref: '#/definitions/models.ResponseBody'
+      security:
+      - middlewares.ApiKeyAuth: []
+      summary: 查询permission信息
+      tags:
+      - Permission
+securityDefinitions:
+  middlewares.ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
