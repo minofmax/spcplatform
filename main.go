@@ -18,7 +18,8 @@ import (
 // @in header
 // @name Authorization
 func main() {
-	ac := middlewares.MakeAccessLog()
+	//ac := middlewares.MakeAccessLog()
+	ac := middlewares.MakeRotateAccessLog()
 	defer ac.Close()
 
 	var app = iris.New()
