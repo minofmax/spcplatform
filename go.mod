@@ -3,7 +3,10 @@ module spcplatform
 go 1.21.6
 
 require (
+	github.com/iproj/file-rotatelogs v1.2.5
+	github.com/iris-contrib/swagger v0.0.0-20230820002204-56b041d3471a
 	github.com/kataras/iris/v12 v12.2.10
+	github.com/swaggo/swag v1.16.3
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 	gorm.io/driver/mysql v1.5.2
 	gorm.io/gorm v1.25.6
@@ -20,6 +23,7 @@ require (
 	github.com/Shopify/goreferrer v0.0.0-20220729165902-8cddb4f5de06 // indirect
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
+	github.com/fastly/go-utils v0.0.0-20180712184237-d95a45783239 // indirect
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/flosch/pongo2/v4 v4.0.2 // indirect
 	github.com/go-openapi/jsonpointer v0.19.5 // indirect
@@ -31,10 +35,8 @@ require (
 	github.com/gomarkdown/markdown v0.0.0-20231222211730-1d6d20845b47 // indirect
 	github.com/google/uuid v1.5.0 // indirect
 	github.com/gorilla/css v1.0.0 // indirect
-	github.com/iproj/file-rotatelogs v1.2.5 // indirect
 	github.com/iris-contrib/schema v0.0.6 // indirect
-	github.com/iris-contrib/swagger v0.0.0-20230820002204-56b041d3471a // indirect
-	github.com/iris-contrib/swagger/v12 v12.2.0-alpha // indirect
+	github.com/jehiah/go-strftime v0.0.0-20171201141054-1d33003b3869 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
@@ -45,6 +47,7 @@ require (
 	github.com/kataras/sitemap v0.0.6 // indirect
 	github.com/kataras/tunnel v0.0.4 // indirect
 	github.com/klauspost/compress v1.17.4 // indirect
+	github.com/lestrrat-go/envload v0.0.0-20180220234015-a3eb8ddeffcc // indirect
 	github.com/lestrrat-go/strftime v0.0.0-20180821113735-8b31f9c59b0f // indirect
 	github.com/mailgun/raymond/v2 v2.0.48 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
@@ -54,8 +57,8 @@ require (
 	github.com/pkg/errors v0.8.1 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/schollz/closestmatch v2.1.0+incompatible // indirect
+	github.com/sergi/go-diff v1.1.0 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
-	github.com/swaggo/swag v1.16.3 // indirect
 	github.com/tdewolff/minify/v2 v2.20.14 // indirect
 	github.com/tdewolff/parse/v2 v2.7.8 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
